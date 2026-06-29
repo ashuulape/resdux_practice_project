@@ -1,4 +1,4 @@
-import React, { use, useEffect } from 'react'
+import React, { use, useEffect, useRef } from 'react'
 import { FetchPhotos, FetchVideos } from '../api/mediaapi'
 import { setActiveTabs, setError, setLoading, setQuery, setResults } from '../redux/fetures/searchSlice'
 import { useDispatch, useSelector } from 'react-redux'
@@ -43,18 +43,21 @@ const ResultGrid = () => {
    }, [query,activeTab])
    
 if(error) return <h1>Error</h1>
-if(loading) return <h1 className='w-full h-full flex items-center justify-center text-2xl'>Loading.....</h1>
+if(loading) return <h1 className='w-fit h-fit flex items-center justify-center text-2xl'>Loading.....</h1>
 
 
 
   return (
-    <div className='flex flex-wrap gap-5 flex-1'>
+    <div id='tik' className='w-full flex justify-center  flex-row flex-wrap  gap-5  items-center '>
         
     {results.map((item,index)=>{
        return  <ResultCard key={index} item={item}/>
     })}
     </div>
+  
   )
 }
+
+useRef
 
 export default ResultGrid
