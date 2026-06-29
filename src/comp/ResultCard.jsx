@@ -2,6 +2,15 @@ import React from 'react'
 
 
  const ResultCard = ({item}) => {
+
+    const savetocollection=(item)=>{
+        const olddata=JSON.parse( localStorage.getItem("collection")) || []
+
+        const newdata=[...olddata,item]
+        localStorage.setItem("collection",JSON.stringify(newdata))
+
+        alert("saved to collection")
+    }
   
 
   return (
@@ -13,8 +22,14 @@ import React from 'react'
      <h1 className=' font-["Roboto Condensed"] text-2xl font-bold text-amber-50 '>{item.title}</h1>
    </div>
 </div>
-  
-    <a className='bg-blue-500 h-auto rounded-md py-2 font-bold hover:bg-blue-600 hover:text-white transition-colors duration-300' href={item.url}>DOWNLOAD</a>
+  <div className='flex items-center flex-row justify-around'>
+    <a className='bg-blue-500 h-auto w-[75%] rounded-md py-2 font-bold hover:bg-blue-600 hover:text-white transition-colors duration-300' href={item.url}>DOWNLOAD</a>
+    <button className='w-[20%] bg-green-500 h-auto rounded-md py-2 font-bold hover:bg-green-600 hover:text-white transition-colors duration-300'
+    onClick={()=>savetocollection(item)}
+    >save</button>
+
+
+  </div>
 
 
     </div>
